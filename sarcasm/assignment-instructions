@@ -1,0 +1,100 @@
+Abstract
+
+In this assignment you will code a real-world application to distributively process a list of amazon reviews, perform sentiment analysis and named entity recognition, and display the result on a web page. The goal of the assignment is to experiment with AWS and detect sarcasm!
+More Details
+The application is composed of a local application, and non-local instances running on Amazon cloud. The application will get as an input text files containing lists of reviews. JSON format. Then, instances will be launched in AWS (workers & a manager) to apply sentiment analysis on the reviews and detect whether it is sarcasm or not. The results are displayed on a webpage.
+The use-case is as follows:
+
+User starts the application and supplies as input files with reviews, an integer n stating how many reviews/messages per worker (your choice), and an optional argument terminate, if received the local application sends a terminate message to the Manager.
+User gets back an html file containing the reviews with sentiment analysis and sarcasm detection, should lead to the url of the original review (at amazon)
+
+Input File Format
+
+Each input file(there are 5), are written in JSON format. You may use any kit to parse the input, you need not implement it yourself.
+Here are the input files:
+
+0689835604
+B000EVOSE4
+B001DZTJRQ
+B0047E0EII
+B01LYRCIPG
+Output File Format
+The output is an HTML file containing a line for each input review, containing the original review colored according to its sentiment:
+0 - very negative - dark red 1 - negative - red 2 - neutral - black 3 - positive - light green 4 - very positive - dark green
+
+and followed by [] containing a comma separated list of the named entities found in the review. Following by whether it is sarcastic review or not.
+
+Sarcasm Detection
+
+This is a simple detection algorithm in which we will only check whether the number of stars given by the user are suitable for the review sentiment analysis we applied. If it is so, then there is no sarcasm, but if it is not, then it appears to be sarcasm. Make sure to note that in your output files.
+System Architecture
+The system is composed of 3 elements:
+Local application
+Manager
+Workers
+
+The elements will communicate with each other using queues (SQS) and storage (S3). It is up to you to decide how many queues to use and how to split the jobs among the workers, but, and you will be graded accordingly, your system should strive to work in parallel. It should be as efficient as possible in terms of time and money.
+Local Application
+The application resides on a local (non-cloud) machine. Once started, it reads the input file from the user, and:
+Checks if a Manager node is active on the EC2 cloud. If it is not, the application will start the manager node.
+Uploads the file to S3.
+Sends a message to an SQS queue, stating the location of the file on S3
+Checks an SQS queue for a message indicating the process is done and the response (the summary file) is available on S3.
+Downloads the summary file from S3, and create an html file representing the results.
+Sends a termination message to the Manager if it was supplied as one of its input arguments.
+
+IMPORTANT: There can be more than one than one local application running at the same time, and requesting service from the manager.
+
+The Manager
+
+The manager process resides on an EC2 node. It checks a special SQS queue for messages from local applications. Once it receives a message it:
+If the message is that of a new task it:
+Downloads the input file from S3.
+Distributes the operations to be performed on the reviews to the workers using SQS queue/s.
+Checks the SQS message count and starts Worker processes (nodes) accordingly.
+The manager should create a worker for every n messages, if there are no running workers.
+If there are k active workers, and the new job requires m workers, then the manager should create m-k new workers, if possible.
+Note that while the manager creates a node for every n messages, it does not delegate messages to specific nodes. All of the worker nodes take their messages from the same SQS queue; so it might be the case that with 2n messages, hence two worker nodes, one node processed n+(n/2) messages, while the other processed only n/2.
+After the manger receives response messages from the workers on all the files on an input file, then it:
+Creates a summary output file accordingly,
+Uploads the output file to S3,
+Sends a message to the application with the location of the file.
+
+If the message is a termination message, then the manager:
+Does not accept any more input files from local applications. However, it does serve the local application that sent the termination message.
+Waits for all the workers to finish their job, and then terminates them.
+Creates response messages for the jobs, if needed.
+Terminates.
+
+IMPORTANT: the manager must process requests from local applications simultaneously; meaning, it must not handle each request at a time, but rather work on all requests in parallel.
+The Workers
+A worker process resides on an EC2 node. Its life cycle is as follows:
+Repeatedly:
+
+Get a message from an SQS queue.
+Perform the requested job, and return the result.
+remove the processed message from the SQS queue.
+
+IMPORTANT:
+If a worker stops working unexpectedly before finishing its work on a message, then some other worker should be able to handle that message.
+The Queues and Messages
+As described above, queues are used for:
+communication between the local application and the manager.
+communication between the manager and the workers.
+
+It is up to you to decide what the jobs and the messages are, and how many queues to use, but your system should run as efficiently as possible in terms of time!
+Running the Application
+The application should be run as follows:
+java -jar yourjar.jar inputFileName1… inputFileNameN outputFileName1… outputFileNameN n
+or, if you want to terminate the manager:
+java  -jar yourjar.jar inputFileName1… inputFileNameN outputFileName1… outputFileNameNn terminate
+The worker should run as follows:
+
+java -cp .:yourjar.jar:stanford-corenlp-3.3.0.jar:stanford-corenlp-3.3.0-models.jar:ejml-0.23.jar:jollyday-0.4.7.jar
+ -jar yourjar.jar 
+where:
+
+yourjar.jar is the name of the jar file containing your code (do not include the libraries in it when you create it).
+inputFileNameI is the name of the input file I.
+outputFileName is the name of the output file.
+n is: workers - files ratio (how many reviews per worker).
