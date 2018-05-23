@@ -1,0 +1,63 @@
+Run results:
+	- with filter (message < 100 chars)
+	- n value: 100
+	- number of workers initiated: 7
+	- total number of reviews processed: 783
+	- Time to finish: 130.544 seconds
+
+Workers logs:
+	- worker #1: successfully processed 300 tasks
+	- worker #2: successfully processed 100 tasks
+	- worker #3: successfully processed 1 tasks
+	- worker #4: successfully processed 103 tasks
+	- worker #5: successfully processed 66 tasks
+	- worker #6: successfully processed 132 tasks
+	- worker #7: successfully processed 81 tasks
+
+Manager logs:
+	handling file: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B0047E0EII.txt'...
+	total number of files received so far is: 1
+	handling file: 'bc1c4b49-fe18-4089-93d0-107c095008b0/0689835604.txt'...
+	total number of files received so far is: 2
+	handling file: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B001DZTJRQ.txt'...
+	total number of files received so far is: 3
+	handling file: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B000EVOSE4.txt'...
+	total number of files received so far is: 4
+	handling file: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B01LYRCIPG.txt'...
+	total number of files received so far is: 5
+	received 'termination' message
+	successfully handled file 'bc1c4b49-fe18-4089-93d0-107c095008b0/B000EVOSE4.txt'
+	number of files handled so far is: 1
+	successfully handled file 'bc1c4b49-fe18-4089-93d0-107c095008b0/B001DZTJRQ.txt'
+	number of files handled so far is: 2
+	successfully handled file 'bc1c4b49-fe18-4089-93d0-107c095008b0/B01LYRCIPG.txt'
+	number of files handled so far is: 3
+	successfully handled file 'bc1c4b49-fe18-4089-93d0-107c095008b0/B0047E0EII.txt'
+	number of files handled so far is: 4
+	successfully handled file 'bc1c4b49-fe18-4089-93d0-107c095008b0/0689835604.txt'
+	number of files handled so far is: 5
+
+LocalApp logs:
+	creating a 'Manager' instance...
+	uploaded file #1: 'bc1c4b49-fe18-4089-93d0-107c095008b0/0689835604.txt'
+	uploaded file #2: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B0047E0EII.txt'
+	uploaded file #3: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B000EVOSE4.txt'
+	uploaded file #4: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B001DZTJRQ.txt'
+	uploaded file #5: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B01LYRCIPG.txt'
+	sent 'termination' message
+	waiting for results...
+	received result #1: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B000EVOSE4.txt'
+	generating html file...
+	finished processing file 'bc1c4b49-fe18-4089-93d0-107c095008b0/B000EVOSE4.txt' in 126.630 seconds
+	received result #2: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B001DZTJRQ.txt'
+	generating html file...
+	finished processing file 'bc1c4b49-fe18-4089-93d0-107c095008b0/B001DZTJRQ.txt' in 127.354 seconds
+	received result #3: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B01LYRCIPG.txt'
+	generating html file...
+	finished processing file 'bc1c4b49-fe18-4089-93d0-107c095008b0/B01LYRCIPG.txt' in 128.015 seconds
+	received result #4: 'bc1c4b49-fe18-4089-93d0-107c095008b0/B0047E0EII.txt'
+	generating html file...
+	finished processing file 'bc1c4b49-fe18-4089-93d0-107c095008b0/B0047E0EII.txt' in 128.665 seconds
+	received result #5: 'bc1c4b49-fe18-4089-93d0-107c095008b0/0689835604.txt'
+	generating html file...
+	finished processing file 'bc1c4b49-fe18-4089-93d0-107c095008b0/0689835604.txt' in 130.544 seconds
