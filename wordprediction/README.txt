@@ -1,4 +1,4 @@
-▄▄▄▄▄                                                                   ▄▄▄▄▄
+﻿▄▄▄▄▄                                                                   ▄▄▄▄▄
     ▀                                                                   ▀
 ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄
 █ ░ █ --───────────────── ■  Release information   ■ ────────────────-- █ ░ █
@@ -10,8 +10,9 @@
 Word Prediction project uses the 'Google N-gram' corpus in order to predict combination of words based on probability.
 
 Authors:
-Amir Avrahami 203204367
-Orr Levy 203518766
+Orr Levy 
+Amir Avrahami 
+
 
 ▄▄▄▄▄                                                                   ▄▄▄▄▄
     ▀                                                                   ▀
