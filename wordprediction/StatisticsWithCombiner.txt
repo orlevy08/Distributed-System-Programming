@@ -1,0 +1,51 @@
+Map-Reduce: WordCount1Gram
+Map input records - value:	44400490
+Map output records - value:	88800980
+Combine input records - value:	89414504
+Combine output records - value:	1258800
+Reduce input records - value: 645276
+Reduce output records - value: 645262
+
+-------------------------------------------
+
+Map-Reduce: WordCount2Gram
+Map input records - value:	252069581
+Map output records - value:	252069581
+Combine input records - value:	252069581
+Combine output records - value:	4928634
+Reduce input records - value: 4928634
+Reduce output records - value: 4928490
+
+-------------------------------------------
+
+Map-Reduce: WordCount3Gram
+Map input records - value:	163471963
+Map output records - value:	163471963
+Combine input records - value:	163471963
+Combine output records - value:	3295166
+Reduce input records - value: 3295166
+Reduce output records - value: 3172966
+
+-------------------------------------------
+
+Map-Reduce: Join2With3
+Map input records - value:	8101456
+Map output records - value:	7503697
+Reduce input records - value: 7503697
+Reduce output records - value: 3372236
+
+-------------------------------------------
+
+Map-Reduce: CalcProb
+Map input records - value:	6545202
+Map output records - value:	5058354
+Reduce input records - value: 5058354
+Reduce output records - value: 1686118
+
+-------------------------------------------
+
+Map-Reduce: SortProbs
+Map input records - value:	1686118
+Map output records - value:	1686118
+Reduce input records - value: 1686118
+Reduce output records - value: 1686118
