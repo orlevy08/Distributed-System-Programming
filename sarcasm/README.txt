@@ -1,4 +1,4 @@
-▄▄▄▄▄                                                                   ▄▄▄▄▄
+﻿▄▄▄▄▄                                                                   ▄▄▄▄▄
     ▀                                                                   ▀
 ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄
 █ ░ █ --───────────────── ■  Release information   ■ ────────────────-- █ ░ █
@@ -10,8 +10,8 @@
 Sarcasm project analyzes reviews and categorized them as sarcasm or not according to Stanford NLP program.
 
 Authors:
-Amir Avrahami 203204367
-Orr Levy 203518766
+Orr Levy 
+Amir Avrahami 
 
 ▄▄▄▄▄                                                                   ▄▄▄▄▄
     ▀                                                                   ▀
