@@ -1,0 +1,26 @@
+Abstract
+
+In this assignment you will generate a knowledge-base for Hebrew word-prediction system, based on Google 3-Gram Hebrew dataset, using Amazon Elastic Map-Reduce (EMR). The produced knowledge-base indicates for a each pair of words the probability of their possible next words. In addition, you should examine the quality of your algorithm according to statistic measures and manual analysis.
+The Assignment
+Probability Function
+Let us define the conditional probability of a word given two previous words, as suggested by Thede & Harper.
+
+Note: this formula combines the Maximum Likelihood Estimation method taught in class, with some backoff smoothing technique - make sure you understand it well.
+Your Task
+You are asked to build a map-reduce system for calculating the conditional probability of each trigram (w1,w2,w3) found in a given corpus, to run it on the Amazon Elastic MapReduce service, and to generate the output knowledge base with the resulted probabilities.
+The input corpus is the Hebrew 3-Gram dataset of Google Books Ngrams.
+
+The output of the system is a list of word trigrams (w1,w2,w3) and their conditional probabilities (P(w3|w1,w2))). The list should be ordered: (1) by w1w2, ascending; (2) by the probability for w3, descending.
+
+Scalability, Memory Assumptions
+
+Your code must be scalable, i.e., should successfully run on much larger input. You should justify your memory assumtion.
+Reports
+
+Statistics
+
+You are required to provide the number of key-value pairs that were sent from the mappers to the reducers in your map-reduce runs, and their size (Hint: take a look at the log file of Hadoop), with and without local aggregation.
+
+Analysis
+
+Choose 10 'interesting' word pairs and show their top-5 next words. Judge whether the system got to a reasonable decision for these cases.
